@@ -1,15 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Button from '@material-ui/core/Button';
 
 function Square(props) {
+
+    function getBadge(value) {
+
+        let cl;
+        cl = (value === 'X') ? "primary" : "secondary";
+        return cl;
+    }
+
     return (
-        <button
-            className="square"
-            onClick={props.onClick}
-        >
-            {props.value}
-        </button>
+        <span>
+            <Button
+                style={{ maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px'}}
+                variant="outlined"
+                color = {getBadge(props.value)}
+                size="large"
+                onClick={props.onClick}
+            >
+                {props.value}
+            </Button>
+        </span>
     );
 }
 
@@ -84,6 +98,7 @@ class Game extends React.Component {
             xIsNext: (step % 2) === 0,
         });
     }
+
 
     render() {
         const history = this.state.history;
