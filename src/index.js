@@ -2,6 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Button from '@material-ui/core/Button';
+import StarIcon from '@material-ui/icons/Star';
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
 
 function Square(props) {
 
@@ -15,9 +22,9 @@ function Square(props) {
     return (
         <span>
             <Button
-                style={{ maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px'}}
+                style={{ maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px' }}
                 variant="outlined"
-                color = {getBadge(props.value)}
+                color={getBadge(props.value)}
                 size="large"
                 onClick={props.onClick}
             >
@@ -99,7 +106,6 @@ class Game extends React.Component {
         });
     }
 
-
     render() {
         const history = this.state.history;
         // const current = history[history.length - 1];
@@ -112,7 +118,14 @@ class Game extends React.Component {
                 'Go to game start';
             return (
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                    <Button
+                        onClick={() => this.jumpTo(move)}
+                        variant="contained"
+                        size="medium"
+                        style={{ margin: '2px', fontSize: '11px' }}
+                    >
+                        {desc}
+                    </Button>
                 </li>
             );
         });
@@ -125,21 +138,53 @@ class Game extends React.Component {
         }
 
         return (
-            <div className="game">
-                <div className="game-board">
-                    <Board
-                        squares={current.squares}
-                        onClick={(i) => this.handleClick(i)}
-                    />
+            <React.Fragment>
+                <div>
+                    <AppBar>
+                        <Toolbar>
+                            <IconButton edge="start" color="inherit" aria-label="menu">
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography variant="h4">
+                                Tic-Tac-Toe
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
                 </div>
-                <div className="game-info">
-                    <div>{status}</div>
-                    <ol>{moves}</ol>
-                </div>
-            </div>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ minHeight: '100vh', background: 'linear-gradient(to right, rgba(63, 81, 181, 0.10), rgba(61, 81, 181, 0.4))' }}
+                >
+                    <div className="game">
+                        <div className="game-board">
+                            <Board
+                                squares={current.squares}
+                                onClick={(i) => this.handleClick(i)}
+                            />
+                        </div>
+                        <div className="game-info">
+                            <div>
+                                <Button
+                                    variant="contained"
+                                    startIcon={<StarIcon />}
+                                >
+                                    {status}
+                                </Button>
+                            </div>
+                            <ol>{moves}</ol>
+                        </div>
+                    </div>
+                </Grid>
+            </React.Fragment>
         );
     }
 }
+
+
 
 // ========================================
 
