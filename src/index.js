@@ -9,6 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function Square(props) {
 
@@ -19,10 +20,19 @@ function Square(props) {
         return cl;
     }
 
+    // Media Query
+    const isActive = useMediaQuery('(min-width:541px)');
+    const isActive2 = useMediaQuery('(min-width:235px)');
+
+
     return (
         <span>
             <Button
-                style={{ maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px' }}
+                style={
+                    (isActive === true) ? { maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px' } :
+                    (isActive2 === true) ? { maxWidth: '65px', maxHeight: '65px', minWidth: '65px', minHeight: '65px', fontSize: '63px' } : {
+                        maxWidth: '30px', maxHeight: '30px', minWidth: '30px', minHeight: '30px', fontSize: '33px' }
+                    }
                 variant="outlined"
                 color={getBadge(props.value)}
                 size="large"
@@ -137,6 +147,8 @@ class Game extends React.Component {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
 
+        // Media Query
+
         return (
             <React.Fragment>
                 <div>
@@ -145,19 +157,21 @@ class Game extends React.Component {
                             <IconButton edge="start" color="inherit" aria-label="menu">
                                 <MenuIcon />
                             </IconButton>
-                            <Typography variant="h4">
+                            <Typography variant="h5">
                                 Tic-Tac-Toe
                             </Typography>
                         </Toolbar>
                     </AppBar>
+                </div>
+                <div>
+                    <Toolbar />
                 </div>
                 <Grid
                     container
                     spacing={0}
                     direction="column"
                     alignItems="center"
-                    justify="center"
-                    style={{ minHeight: '100vh', background: 'linear-gradient(to right, rgba(63, 81, 181, 0.10), rgba(61, 81, 181, 0.4))' }}
+                    style={{ minHeight: '100vh' }}
                 >
                     <div className="game">
                         <div className="game-board">

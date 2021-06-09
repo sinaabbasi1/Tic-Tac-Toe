@@ -1,6 +1,7 @@
 body {
   font: 14px "Century Gothic", Futura, sans-serif;
   margin: 20px;
+  background: linear-gradient(to right, rgba(63, 81, 181, 0.10), rgba(61, 81, 181, 0.4));
 }
 
 ol,
@@ -48,4 +49,18 @@ ul {
 
 .game-info {
   margin-left: 20px;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 540px) {
+  .game {
+    display: block;
+  }
+
+  .game-info {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
 }
