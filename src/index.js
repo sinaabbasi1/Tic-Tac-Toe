@@ -28,6 +28,8 @@ function Square(props) {
     return (
         <span>
             <Button
+                // style={(isActive === true) ? { maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px' }:
+                // {maxWidth: '65px', maxHeight: '65px', minWidth: '65px', minHeight: '65px', fontSize: '63px'}}
                 style={
                     (isActive === true) ? { maxWidth: '100px', maxHeight: '100px', minWidth: '100px', minHeight: '100px', fontSize: '63px' } :
                     (isActive2 === true) ? { maxWidth: '65px', maxHeight: '65px', minWidth: '65px', minHeight: '65px', fontSize: '63px' } : {
